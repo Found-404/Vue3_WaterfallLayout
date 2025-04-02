@@ -92,13 +92,13 @@ var verticalLineProcessor = /* @__PURE__ */ (() => {
     let grow = options.grow;
     let strategy = grow ? getRowStrategyWithGrow(width, grow) : getRowStrategy(width, options);
     let tops = getArrayFillWith(0, strategy.count);
-    metas.forEach((meta, index) => {
+    metas.forEach((meta, index2) => {
       let offset = tops.reduce(
         (last, top, i) => top < tops[last] ? i : last,
         0
       );
       let width2 = strategy.width[offset % strategy.count];
-      let rect = rects[index];
+      let rect = rects[index2];
       rect.top = tops[offset];
       rect.left = strategy.left + (offset ? sum(strategy.width.slice(0, offset)) : 0);
       rect.width = width2;
@@ -488,9 +488,10 @@ const _sfc_main = {
   }
 };
 const WaterfallSlot = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-362c8e96"]]);
-module.exports = {
+const index = {
   Waterfall,
-  WaterfallSlot,
-  waterfall: Waterfall,
-  waterfallSlot: WaterfallSlot
+  WaterfallSlot
+};
+export {
+  index as default
 };

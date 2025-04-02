@@ -18,6 +18,7 @@ export default defineConfig({
       entry: "src/index.js",
       name: "Waterfall-Vue3",
       fileName: "Waterfall-Vue3",
+      formats: ["es", "umd"], // 同时生成ES和UMD格式
     },
     rollupOptions: {
       external: ["vue"], // 不打包 Vue

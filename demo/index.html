@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 Button Demo</title>
+    <!-- 引入Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Found-404/Vue3_WaterfallLayout@1.0.0/dist/Waterfall-Vue3.umd.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button class="btn" @click="greet">点击我</button>
+
+        <!-- <Waterfall :line="line ? 'h' : 'v'" :line-gap="200" :min-line-gap="180" :max-line-gap="220" ref="waterfall">
+            <WaterfallSlot v-for="(item, index) in items" :width="item.width" :height="item.height" :key="item.index"
+                :order="index" move-class="item-move">
+                <div class="item" :style="item.style" :index="item.index"></div>
+            </WaterfallSlot>
+        </Waterfall> -->
+
+    </div>
+
+    <script>
+        // import Waterfall from "https://cdn.jsdelivr.net/gh/Found-404/Vue3_WaterfallLayout@1.0.0/dist/Waterfall-Vue3.mjs"
+        const { createApp, ref } = Vue;
+        const app = createApp({
+            setup() {
+                // 响应式数据
+                const count = ref(0);
+                const greet = () => {
+                    console.log(count.value);
+                };
+
+                // 暴露给模板
+                return {
+                    count,
+                    greet,
+                };
+            }
+        });
+        // app.component('WaterfallLayout', Waterfall);
+        app.mount('#app');
+    </script>
+</body>
+
+</html>
