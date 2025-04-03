@@ -1,6 +1,6 @@
 {
   "name": "waterfall-v3",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Found-404",
   "main": "./dist/Waterfall-Vue3.mjs",
   "module": "./dist/Waterfall-Vue3.mjs",
