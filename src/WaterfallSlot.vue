@@ -83,7 +83,7 @@ defineExpose({
 });
 </script>
 
-<style scoped>
+<style>
 .vue-waterfall-slot {
   position: absolute;
   margin: 0;

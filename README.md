@@ -23,3 +23,33 @@ npm install --save waterfall-v3
 ```html
 <script src="https://cdn.jsdelivr.net/gh/Found-404/Vue3_WaterfallLayout@1.0.2/dist/Waterfall-Vue3.umd.js"></script>
 ```
+
+## Introduction
+
+```html
+...
+
+import { Waterfall, WaterfallSlot } from "./waterfall-v3/dist/Waterfall-Vue3.mjs";
+
+...
+
+<Waterfall
+    :line-gap="200"
+    :min-line-gap="180"
+    :max-line-gap="220"
+    ref="waterfall"
+>
+    <WaterfallSlot
+    v-for="(item, index) in items"
+    :width="item.width"
+    :height="item.height"
+    :key="item.index"
+    :order="index"
+    move-class="item-move"
+    >
+    <div class="item" :style="item.style" :index="item.index"></div>
+    </WaterfallSlot>
+</Waterfall>
+
+
+```

@@ -1,3 +1,4 @@
+!function(){"use strict";try{if("undefined"!=typeof document){var e=document.createElement("style");e.appendChild(document.createTextNode(".vue-waterfall{position:relative}.vue-waterfall-slot{position:absolute;margin:0;padding:0;box-sizing:border-box}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}}();
 import { ref, getCurrentInstance, provide, watch, onMounted, onUnmounted, onBeforeUnmount, createElementBlock, openBlock, renderSlot, inject, withDirectives, vShow } from "vue";
 var horizontalLineProcessor = /* @__PURE__ */ (() => {
   function calculate(vm, options, metas, rects) {
@@ -175,13 +176,6 @@ function getArrayFillWith(item, count) {
 function sum(arr) {
   return arr.reduce((sum2, val) => sum2 + val);
 }
-const _export_sfc = (sfc, props) => {
-  const target = sfc.__vccOpts || sfc;
-  for (const [key, val] of props) {
-    target[key] = val;
-  }
-  return target;
-};
 const MOVE_CLASS_PROP = "_wfMoveClass";
 const _sfc_main$1 = {
   __name: "Waterfall",
@@ -439,12 +433,11 @@ const _sfc_main$1 = {
         ref_key: "waterfallRef",
         ref: waterfallRef
       }, [
-        renderSlot(_ctx.$slots, "default", {}, void 0, true)
+        renderSlot(_ctx.$slots, "default")
       ], 512);
     };
   }
 };
-const Waterfall = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-606a03dc"]]);
 const _sfc_main = {
   __name: "WaterfallSlot",
   props: {
@@ -514,18 +507,19 @@ const _sfc_main = {
         ref_key: "node",
         ref: node
       }, [
-        renderSlot(_ctx.$slots, "default", {}, void 0, true)
+        renderSlot(_ctx.$slots, "default")
       ], 512)), [
         [vShow, isShow.value]
       ]);
     };
   }
 };
-const Waterfallslot = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-2591e18a"]]);
 const index = {
-  Waterfall,
-  Waterfallslot
+  Waterfall: _sfc_main$1,
+  WaterfallSlot: _sfc_main
 };
 export {
+  _sfc_main$1 as Waterfall,
+  _sfc_main as WaterfallSlot,
   index as default
 };
