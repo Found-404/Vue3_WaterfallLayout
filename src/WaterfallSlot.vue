@@ -1,11 +1,20 @@
 <template>
-  <div class="vue-waterfall-slot" ref="node">
+  <div class="vue-waterfall-slot" ref="node" v-show="isShow">
     <slot></slot>
   </div>
 </template>
 
 <script setup>
-import { ref, defineProps, watch, getCurrentInstance, defineExpose } from "vue";
+import {
+  ref,
+  defineProps,
+  watch,
+  getCurrentInstance,
+  onMounted,
+  defineExpose,
+  onUnmounted,
+  inject,
+} from "vue";
 
 const instance = getCurrentInstance();
 const props = defineProps({
@@ -28,6 +37,7 @@ const props = defineProps({
     default: "",
   },
 });
+const isShow = ref(false);
 const node = ref(null);
 const rect = ref({
   top: 0,
@@ -35,9 +45,10 @@ const rect = ref({
   width: 0,
   height: 0,
 });
+const reflow = inject("reflow");
 
 const notify = () => {
-  //   this.$parent.$emit("reflow", this);
+  reflow();
 };
 
 const getMeta = () => {
@@ -52,14 +63,19 @@ const getMeta = () => {
 };
 
 // 监听props中的width和height
-watch(
-  [() => props.width, () => props.height],
-  ([newValA, oldValA], [newValB, oldValB]) => {
-    console.log(newValA, oldValA, newValB, oldValB);
-    // 通知父组件
-    notify();
-  }
-);
+watch([() => props.width, () => props.height], () => {
+  // 通知父组件
+  notify();
+});
+const handler = () => {
+  isShow.value = true;
+};
+onMounted(() => {
+  handler();
+});
+onUnmounted(() => {
+  notify();
+});
 
 defineExpose({
   getMeta,

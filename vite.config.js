@@ -4,14 +4,15 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
   plugins: [vue()],
   build: {
+    cssCodeSplit: true,
     minify: "terser", // 必须明确指定
     terserOptions: {
       compress: {
-        drop_console: true, // 移除 console.log
-        drop_debugger: true,
+        // drop_console: true, // 移除 console.log
+        // drop_debugger: true,
       },
       format: {
-        comments: false, // 移除注释
+        // comments: false, // 移除注释
       },
     },
     lib: {

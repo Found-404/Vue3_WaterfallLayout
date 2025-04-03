@@ -1,4 +1,4 @@
-import { ref, getCurrentInstance, watch, onMounted, onBeforeUnmount, createElementBlock, openBlock, normalizeStyle, renderSlot } from "vue";
+import { ref, getCurrentInstance, provide, watch, onMounted, onUnmounted, onBeforeUnmount, createElementBlock, openBlock, renderSlot, inject, withDirectives, vShow } from "vue";
 var horizontalLineProcessor = /* @__PURE__ */ (() => {
   function calculate(vm, options, metas, rects) {
     let width = vm.$el.clientWidth;
@@ -232,6 +232,7 @@ const _sfc_main$1 = {
     const instance = getCurrentInstance();
     const virtualRects = ref([]);
     const token = ref();
+    provide("reflow", reflow);
     watch(
       [
         () => props.align,
@@ -277,6 +278,7 @@ const _sfc_main$1 = {
         }
         instance.proxy.$el.style.overflow = "hidden";
         render(virtualRects.value, metas);
+        flag = true;
         instance.proxy.$emit("reflowed", instance.proxy);
       }, 0);
     }
@@ -404,8 +406,28 @@ const _sfc_main$1 = {
     function off(elem, type, listener, useCapture = false) {
       elem.removeEventListener(type, listener, useCapture);
     }
+    let flag = true;
     onMounted(() => {
       watchAutoResize();
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (flag) {
+            flag = false;
+            reflow();
+          }
+        });
+      });
+      if (waterfallRef.value) {
+        observer.observe(waterfallRef.value, {
+          childList: true,
+          // 监听子节点增删
+          subtree: false,
+          // 监听所有后代节点
+          attributes: false
+          // 监听属性变化
+        });
+      }
+      onUnmounted(() => observer.disconnect());
     });
     onBeforeUnmount(() => {
       autoResizeHandler(false);
@@ -414,16 +436,15 @@ const _sfc_main$1 = {
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", {
         class: "vue-waterfall",
-        style: normalizeStyle(_ctx.style),
         ref_key: "waterfallRef",
         ref: waterfallRef
       }, [
         renderSlot(_ctx.$slots, "default", {}, void 0, true)
-      ], 4);
+      ], 512);
     };
   }
 };
-const Waterfall = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-1e2fbc00"]]);
+const Waterfall = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-606a03dc"]]);
 const _sfc_main = {
   __name: "WaterfallSlot",
   props: {
@@ -449,6 +470,7 @@ const _sfc_main = {
   setup(__props, { expose: __expose }) {
     const instance = getCurrentInstance();
     const props = __props;
+    const isShow = ref(false);
     const node = ref(null);
     const rect = ref({
       top: 0,
@@ -456,6 +478,10 @@ const _sfc_main = {
       width: 0,
       height: 0
     });
+    const reflow = inject("reflow");
+    const notify = () => {
+      reflow();
+    };
     const getMeta = () => {
       return {
         vm: instance.proxy,
@@ -466,31 +492,39 @@ const _sfc_main = {
         moveClass: props.moveClass
       };
     };
-    watch(
-      [() => props.width, () => props.height],
-      ([newValA, oldValA], [newValB, oldValB]) => {
-        console.log(newValA, oldValA, newValB, oldValB);
-      }
-    );
+    watch([() => props.width, () => props.height], () => {
+      notify();
+    });
+    const handler = () => {
+      isShow.value = true;
+    };
+    onMounted(() => {
+      handler();
+    });
+    onUnmounted(() => {
+      notify();
+    });
     __expose({
       getMeta,
       rect
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", {
+      return withDirectives((openBlock(), createElementBlock("div", {
         class: "vue-waterfall-slot",
         ref_key: "node",
         ref: node
       }, [
         renderSlot(_ctx.$slots, "default", {}, void 0, true)
-      ], 512);
+      ], 512)), [
+        [vShow, isShow.value]
+      ]);
     };
   }
 };
-const WaterfallSlot = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-362c8e96"]]);
+const Waterfallslot = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-2591e18a"]]);
 const index = {
   Waterfall,
-  WaterfallSlot
+  Waterfallslot
 };
 export {
   index as default
