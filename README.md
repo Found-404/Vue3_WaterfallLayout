@@ -17,7 +17,7 @@ Optimized the legacy issues of vue2 version.
 ## Installation
 
 ```shell
-npm install --save vue3-waterfalllayout
+npm install --save waterfall-v3
 ```
 
 ```html
