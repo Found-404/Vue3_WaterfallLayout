@@ -21,5 +21,5 @@ npm install --save waterfall-v3
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Found-404/Vue3_WaterfallLayout@1.0.2/dist/Waterfall-Vue3.umd.js"></script>
 ```
