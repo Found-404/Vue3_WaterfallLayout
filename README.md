@@ -1,6 +1,6 @@
 ![preview](vue-waterfall.png)
 
-# vue-waterfall
+# Vue3-waterfall
 
 A waterfall layout component for Vue3.js .
 
@@ -12,10 +12,14 @@ Optimized the legacy issues of vue2 version.
 
 ## Effect Preview
 
-- [Vue3-Waterfall]()
+- [Vue3-Waterfall](https://found-404.github.io/Vue3_WaterfallLayout/)
 
 ## Installation
 
 ```shell
 npm install --save vue3-waterfalllayout
+```
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
 ```
