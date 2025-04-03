@@ -1,19 +1,24 @@
 {
   "name": "vue3-waterfalllayout",
   "version": "1.0.0",
+  "author": "Found-404",
   "main": "./dist/Waterfall-Vue3.umd.js",
   "module": "./dist/Waterfall-Vue3.mjs",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Found-404/Vue3_WaterfallLayout"
+  },
+  "homepage": "https://github.com/Found-404/Vue3_WaterfallLayout",
   "scripts": {
     "build": "vite build",
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A Vue 3 waterfall component",
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
     "terser": "^5.39.0",
