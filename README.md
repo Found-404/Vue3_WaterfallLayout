@@ -29,8 +29,7 @@ npm install --save waterfall-v3
 ```html
 ...
 
-import { Waterfall, WaterfallSlot } from "./waterfall-v3/dist/Waterfall-Vue3.mjs";
-
+import { Waterfall, WaterfallSlot } from "waterfall-v3";
 ...
 
 <Waterfall
