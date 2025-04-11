@@ -66,3 +66,4 @@ npm install --save waterfall-v3
 ## Other versions
 
 - [React-Waterfall](https://github.com/Found-404/React_WaterfallLayout)
+- [Vue-Waterfall](https://github.com/Found-404/Vue3_WaterfallLayout)
