@@ -1,4 +1,19 @@
-![preview](vue-waterfall.png)
+<p align="center">
+    <img alt="logo" src="waterFullLogo.png"  style="margin-bottom: 10px;">
+</p>
+
+<h1 align="center">WaterFull</h1>
+<p align="center">
+  <a href="https://github.com/MopTym/vue-waterfall">Vue2</a>
+  &nbsp;
+  ·
+  &nbsp;
+  <a href="https://github.com/Found-404/Vue3_WaterfallLayout">Vue3</a>
+  &nbsp;
+  ·
+  &nbsp;
+  <a href="">React</a>
+</p>
 
 # Vue3-waterfall
 
@@ -27,28 +42,27 @@ npm install --save waterfall-v3
 ## Introduction
 
 ```html
-...
-
-import { Waterfall, WaterfallSlot } from "waterfall-v3";
-...
+... import { Waterfall, WaterfallSlot } from "waterfall-v3"; ...
 
 <Waterfall
-    :line-gap="200"
-    :min-line-gap="180"
-    :max-line-gap="220"
-    ref="waterfall"
+  :line-gap="200"
+  :min-line-gap="180"
+  :max-line-gap="220"
+  ref="waterfall"
 >
-    <WaterfallSlot
+  <WaterfallSlot
     v-for="(item, index) in items"
     :width="item.width"
     :height="item.height"
     :key="item.index"
     :order="index"
     move-class="item-move"
-    >
+  >
     <div class="item" :style="item.style" :index="item.index"></div>
-    </WaterfallSlot>
+  </WaterfallSlot>
 </Waterfall>
-
-
 ```
+
+## Other versions
+
+- [React-Waterfall](https://github.com/Found-404/React_WaterfallLayout)
