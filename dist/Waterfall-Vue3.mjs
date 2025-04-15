@@ -246,7 +246,7 @@ const _sfc_main$1 = {
       }
     );
     watch(
-      props.grow,
+      [() => props.grow],
       () => {
         reflowHandler();
       },

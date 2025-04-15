@@ -84,7 +84,7 @@ watch(
 );
 
 watch(
-  props.grow,
+  [() => props.grow],
   () => {
     reflowHandler();
   },
